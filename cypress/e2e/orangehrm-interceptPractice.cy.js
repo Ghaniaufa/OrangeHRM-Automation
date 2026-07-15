@@ -58,6 +58,35 @@ describe('OrangeHRM Login using Intercept', () => {
 
         cy.contains('Invalid credentials').should('be.visible')
     })
-    
+    // TC008
+    it('TC008 - Username is case sensitive', () => {
+        cy.intercept('POST','**/auth/validate').as('Usersensitive')
+
+        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+
+        cy.get('input[name="username"]').type('admin')
+        cy.get('input[name="password"]').type('admin123')
+        cy.get('button[type="submit"]').click()
+
+        cy.wait('@Usersensitive')
+
+        
+        cy.url().should('include','dashboard')
+    })
+
+    // TC009
+    it('TC009 - Password is case sensitive', () => {
+        cy.intercept('POST','**/auth/validate').as('Passwordsensitive')
+
+        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+
+        cy.get('input[name="username"]').type('Admin')
+        cy.get('input[name="password"]').type('Admin123')
+        cy.get('button[type="submit"]').click()
+
+        cy.wait('@Passwordsensitive')
+
+        cy.contains('Invalid credentials').should('be.visible')
+    })
 
 })
