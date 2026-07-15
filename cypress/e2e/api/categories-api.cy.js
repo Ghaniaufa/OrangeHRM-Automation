@@ -198,6 +198,18 @@ it('TC010 Total Categories',()=>{
     })
 
 })
+it('TC011 Validate Name',()=>{
+
+    cy.request('GET',
+    'https://api.escuelajs.co/api/v1/categories/1')
+
+    .then((response)=>{
+
+        expect(response.body).to.have.property('name')
+
+    })
+
+})
     
 
 
