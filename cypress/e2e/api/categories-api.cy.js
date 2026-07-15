@@ -1,5 +1,6 @@
 describe('Categories API', () => {
 
+    
     it('TC001 Get All Categories', () => {
 
         cy.request('GET',
@@ -46,8 +47,35 @@ describe('Categories API', () => {
         expect(response.body).to.have.property('name')
 
     })
+    
+
+    })
+    it('TC003 Create Category',()=>{
+
+    cy.fixture('category').then((data)=>{
+
+        cy.request({
+
+            method:'POST',
+
+            url:'https://api.escuelajs.co/api/v1/categories',
+
+            body:data
+
+        }).then((response)=>{
+
+            expect(response.status).to.eq(201)
+
+            expect(response.body.name).to.eq(data.name)
+
+            expect(response.body).to.have.property('id')
+
+        })
 
     })
 
+})
     
+
+
 })
