@@ -21,11 +21,26 @@ describe('OrangeHRM Login using Intercept', () => {
         cy.intercept('POST','**/auth/validate').as('invalidUsername')
 
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+        
         cy.get('input[name="username"]').type('Admin123')
         cy.get('input[name="password"]').type('admin123')
         cy.get('button[type="submit"]').click()
 
         cy.wait('@invalidUsername')
+
+        cy.contains('Invalid credentials').should('be.visible')
+    })
+     // TC003
+    it('TC003 - Login with invalid password', () => {
+        cy.intercept('POST','**/auth/validate').as('invalidPassword')
+
+        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+
+        cy.get('input[name="username"]').type('Admin')
+        cy.get('input[name="password"]').type('admin12345')
+        cy.get('button[type="submit"]').click()
+
+        cy.wait('@invalidPassword')
 
         cy.contains('Invalid credentials').should('be.visible')
     })
