@@ -100,6 +100,42 @@ it('TC005 Update Category',()=>{
     })
 
 })
+it('TC006 Delete Category',()=>{
+
+    cy.request({
+
+        method:'DELETE',
+
+        url:'https://api.escuelajs.co/api/v1/categories/4',
+
+        failOnStatusCode:false
+
+    }).then((response)=>{
+
+        expect(response.status).to.be.oneOf([200,202,204])
+
+    })
+
+})
+it('TC007 Invalid ID',()=>{
+
+    cy.request({
+
+        method:'GET',
+
+        url:'https://api.escuelajs.co/api/v1/categories/999999',
+
+        failOnStatusCode:false
+
+    }).then((response)=>{
+
+        expect(response.status).to.eq(404)
+
+        expect(response.body.message).to.exist
+
+    })
+
+})
     
 
 
