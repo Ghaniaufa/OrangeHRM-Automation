@@ -74,16 +74,20 @@ describe('OrangeHRM Login POM', () => {
 
     })
     //TC008
-    it('TC008 Username Space',()=>{
+    it('TC008 Username Space', () => {
 
     login.visit()
 
-    login.inputUsername(data.spaceUser)
+    login.inputUsername(' Admin')
     login.inputPassword(data.validPassword)
+
     login.clickLogin()
-    login.verifyDashboard()
+
+    cy.contains('Invalid credentials').should('be.visible')
+
+    cy.url().should('include','/auth/login')
 
 })
 
-
 })
+
