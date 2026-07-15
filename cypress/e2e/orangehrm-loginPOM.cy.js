@@ -52,6 +52,27 @@ describe('OrangeHRM Login POM', () => {
     login.verifyInvalidCredential()
 
     })
+    //TC006
+    it('TC006 Invalid Password',()=>{
+
+    login.visit()
+    login.inputUsername(data.validUser)
+    login.inputPassword(data.wrongPassword)
+    login.clickLogin()
+    login.verifyInvalidCredential()
+
+    })
+    //TC007
+    it('TC007 SQL Injection',()=>{
+
+    login.visit()
+
+    login.inputUsername(data.sqlInjection)
+    login.inputPassword(data.sqlInjection)
+    login.clickLogin()
+    login.verifyInvalidCredential()
+
+    })
 
 
 })
