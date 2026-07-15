@@ -6,17 +6,25 @@ class LoginPage {
 
     }
 
-    inputUsername(username){
+   inputUsername(username){
 
-        cy.get('input[name="username"]').clear().type(username)
+    cy.get('input[name="username"]').clear()
+
+    if(username){
+        cy.get('input[name="username"]').type(username)
+    }
 
     }
 
     inputPassword(password){
 
-        cy.get('input[name="password"]').clear().type(password)
+    cy.get('input[name="password"]').clear()
 
+    if(password){
+        cy.get('input[name="password"]').type(password)
     }
+
+}
 
     clickLogin(){
 
