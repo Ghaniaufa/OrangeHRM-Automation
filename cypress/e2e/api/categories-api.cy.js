@@ -136,6 +136,31 @@ it('TC007 Invalid ID',()=>{
     })
 
 })
+it('TC007 Empty Name',()=>{
+
+    cy.request({
+
+        method:'POST',
+
+        url:'https://api.escuelajs.co/api/v1/categories',
+
+        failOnStatusCode:false,
+
+        body:{
+
+            name:'',
+
+            image:'https://picsum.photos/640/640'
+
+        }
+
+    }).then((response)=>{
+
+        expect(response.status).to.not.eq(201)
+
+    })
+
+})
     
 
 
