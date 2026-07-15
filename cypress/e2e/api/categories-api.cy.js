@@ -16,5 +16,21 @@ describe('Categories API', () => {
         })
 
     })
+    it('TC002 Get Category by ID',()=>{
+
+    cy.request('GET',
+    'https://api.escuelajs.co/api/v1/categories/1')
+
+    .then((response)=>{
+
+        expect(response.status).to.eq(200)
+
+        expect(response.body.id).to.eq(1)
+
+        expect(response.body).to.have.property('name')
+
+    })
+
+    })
 
 })
