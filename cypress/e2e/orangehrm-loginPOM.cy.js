@@ -73,6 +73,17 @@ describe('OrangeHRM Login POM', () => {
     login.verifyInvalidCredential()
 
     })
+    //TC008
+    it('TC008 Username Space',()=>{
+
+    login.visit()
+
+    login.inputUsername(data.spaceUser)
+    login.inputPassword(data.validPassword)
+    login.clickLogin()
+    login.verifyDashboard()
+
+})
 
 
 })
