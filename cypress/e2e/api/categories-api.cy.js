@@ -210,6 +210,18 @@ it('TC011 Validate Name',()=>{
     })
 
 })
+it('TC012 Validate Image',()=>{
+
+    cy.request('GET',
+    'https://api.escuelajs.co/api/v1/categories/1')
+
+    .then((response)=>{
+
+        expect(response.body).to.have.property('image')
+
+    })
+
+})
     
 
 
