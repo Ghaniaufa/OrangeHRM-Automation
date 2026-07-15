@@ -136,7 +136,7 @@ it('TC007 Invalid ID',()=>{
     })
 
 })
-it('TC007 Empty Name',()=>{
+it('TC08 Empty Name',()=>{
 
     cy.request({
 
@@ -157,6 +157,43 @@ it('TC007 Empty Name',()=>{
     }).then((response)=>{
 
         expect(response.status).to.not.eq(201)
+
+    })
+
+})
+it('TC009 Without Image',()=>{
+
+    cy.request({
+
+        method:'POST',
+
+        url:'https://api.escuelajs.co/api/v1/categories',
+
+        failOnStatusCode:false,
+
+        body:{
+
+            name:'QA'
+
+        }
+
+    }).then((response)=>{
+
+        expect(response.status).to.not.eq(201)
+
+    })
+
+})
+it('TC010 Total Categories',()=>{
+
+    cy.request('GET',
+    'https://api.escuelajs.co/api/v1/categories')
+
+    .then((response)=>{
+
+        expect(response.status).to.eq(200)
+
+        expect(response.body.length).to.be.greaterThan(0)
 
     })
 
