@@ -42,6 +42,16 @@ describe('OrangeHRM Login POM', () => {
         login.clickLogin()
         cy.contains('Required').should('be.visible')
     })
+    //TC005
+    it('TC005 Invalid Username',()=>{
+
+    login.visit()
+    login.inputUsername(data.wrongUser)
+    login.inputPassword(data.validPassword)
+    login.clickLogin()
+    login.verifyInvalidCredential()
+
+    })
 
 
 })
