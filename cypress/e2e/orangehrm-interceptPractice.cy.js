@@ -44,5 +44,20 @@ describe('OrangeHRM Login using Intercept', () => {
 
         cy.contains('Invalid credentials').should('be.visible')
     })
+    // TC004
+    it('TC004 - Login with invalid username and password', () => {
+        cy.intercept('POST','**/auth/validate').as('invalidUsernamePassword')
+
+        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+
+        cy.get('input[name="username"]').type('user')
+        cy.get('input[name="password"]').type('password')
+        cy.get('button[type="submit"]').click()
+
+        cy.wait('@invalidUsernamePassword')
+
+        cy.contains('Invalid credentials').should('be.visible')
+    })
+    
 
 })
