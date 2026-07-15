@@ -1,0 +1,16 @@
+{
+    "validUser":"Admin",
+    "validPassword":"admin123",
+
+    "wrongUser":"Admin123",
+    "wrongPassword":"admin1234",
+
+    "empty":"",
+
+    "spaceUser":" Admin ",
+    "spacePassword":" admin123 ",
+
+    "sqlInjection":"' OR 1=1 --",
+
+    "xss":"<script>alert(1)</script>"
+}
