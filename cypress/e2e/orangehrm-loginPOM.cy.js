@@ -24,10 +24,20 @@ describe('OrangeHRM Login POM', () => {
         cy.contains('Required').should('be.visible')
 
     })
+    //TC003
     it('TC003 Empty Password',() => {
 
         login.visit()
         login.inputUsername(data.validPassword)
+        login.inputPassword(data.empty)
+        login.clickLogin()
+        cy.contains('Required').should('be.visible')
+    })
+    //TC004
+    it('TC004 Empty Username and Password',() => {
+
+        login.visit()
+        login.inputUsername(data.empty)
         login.inputPassword(data.empty)
         login.clickLogin()
         cy.contains('Required').should('be.visible')
