@@ -50,7 +50,7 @@ describe('Categories API', () => {
     
 
     })
-    it('TC003 Create Category',()=>{
+    it('TC004 Create Category',()=>{
 
     cy.fixture('category').then((data)=>{
 
@@ -71,6 +71,31 @@ describe('Categories API', () => {
             expect(response.body).to.have.property('id')
 
         })
+
+    })
+
+})
+it('TC005 Update Category',()=>{
+
+    cy.request({
+
+        method:'PUT',
+
+        url:'https://api.escuelajs.co/api/v1/categories/10',
+
+        body:{
+
+            name:'Basketball',
+
+            image:'https://picsum.photos/640/640?r=200'
+
+        }
+
+    }).then((response)=>{
+
+        expect(response.status).to.eq(200)
+
+        expect(response.body.name).to.eq('Basketball')
 
     })
 
